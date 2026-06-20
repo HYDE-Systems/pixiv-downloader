@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 使い方・セットアップ
+    url: https://github.com/HYDE-Systems/pixiv-downloader#使い方
+    about: 導入方法・初回ログイン・再起動ポリシーは README を参照してください。
+  - name: 質問・相談
+    url: https://github.com/HYDE-Systems/pixiv-downloader/discussions
+    about: バグ報告・機能要望以外の質問はこちらへ（Discussions が有効な場合）。

@@ -1,0 +1,106 @@
+name: バグ報告
+description: 不具合・期待どおり動かない問題を報告する
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        報告ありがとうございます。再現に必要な情報をできるだけ記入してください。
+        **ログや設定に refresh_token・SMB パスワード・API トークンなどの秘密情報を含めないでください。**
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 概要
+      description: 何が起きたかを簡潔に。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: components
+    attributes:
+      label: 影響するコンポーネント
+      multiple: true
+      options:
+        - ダッシュボード (フロントエンド)
+        - バックエンド API
+        - ダウンロード / SMB 保存
+        - 認証 / ログイン (pixiv / ダッシュボード)
+        - RSS フィード
+        - Chrome 拡張機能
+        - Docker / Compose / CI
+        - わからない
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: バージョン / イメージタグ
+      placeholder: "例: v1.0.0 / ghcr.io ...:1.0.0 / main"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: 導入方法
+      options:
+        - docker compose (公開イメージ)
+        - docker compose (ソースビルド)
+        - docker run
+        - その他
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      description: 箇条書きで具体的に。
+      placeholder: |
+        1. ...
+        2. ...
+        3. エラー発生
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する挙動
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 実際の挙動
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: ログ
+      description: "`docker compose logs backend` などの関連ログ（秘密情報は除去）。"
+      render: shell
+
+  - type: input
+    id: env
+    attributes:
+      label: 環境
+      placeholder: "例: Ubuntu 24.04 / Docker 27 / Chrome 126 / SMB サーバー: Samba 4.x"
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 確認事項
+      options:
+        - label: 既存の Issue に重複がないか検索した
+          required: true
+        - label: 最新バージョンで再現することを確認した
+          required: true
+        - label: ログ・スクリーンショットから秘密情報を除去した
+          required: true
