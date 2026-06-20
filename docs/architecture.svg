@@ -30,12 +30,14 @@
   <text x="346" y="154" class="sub">フィルムストリップ監視</text>
 
   <!-- Backend -->
-  <rect class="box" x="330" y="210" width="200" height="120" rx="3"/>
-  <text x="346" y="238" class="lbl">バックエンド (FastAPI)</text>
-  <text x="346" y="260" class="sub">pixivpy ラッパー</text>
-  <text x="346" y="278" class="sub">ダウンロードキュー/ワーカー</text>
-  <text x="346" y="296" class="sub">画像プロキシ(SSE)</text>
-  <text x="346" y="314" class="sub">refresh_token (PKCE)</text>
+  <rect class="box" x="330" y="200" width="200" height="158" rx="3"/>
+  <text x="346" y="226" class="lbl">バックエンド (FastAPI)</text>
+  <text x="346" y="248" class="sub">pixivpy ラッパー</text>
+  <text x="346" y="266" class="sub">ダウンロードキュー/ワーカー</text>
+  <text x="346" y="284" class="sub">画像プロキシ(SSE)</text>
+  <text x="346" y="302" class="sub">RSS配信 (作家/検索/フォロー)</text>
+  <text x="346" y="320" class="sub">pixiv認証 refresh_token(PKCE)</text>
+  <text x="346" y="338" class="sub">ログインゲート(トークン/Cookie)</text>
 
   <!-- Encrypted volume -->
   <rect class="box" x="610" y="70" width="220" height="92" rx="3"/>
@@ -57,7 +59,7 @@
 
   <!-- arrows -->
   <path class="arr" d="M224 116 L330 116"/>
-  <path class="arr" d="M430 162 L430 210"/>
+  <path class="arr" d="M430 162 L430 200"/>
   <path class="arr" d="M330 270 L224 280"/>
   <path class="arr" d="M530 250 L610 130"/>
   <path class="arr2" d="M530 300 L610 295"/>
