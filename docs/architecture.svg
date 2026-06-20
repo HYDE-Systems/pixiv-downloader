@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="430" viewBox="0 0 860 430" font-family="monospace">
+  <rect width="860" height="430" fill="#14110F"/>
+  <style>
+    .box { fill:#1e1a17; stroke:#38302a; }
+    .lbl { fill:#ede6d8; font-size:14px; }
+    .sub { fill:#9a9183; font-size:11px; }
+    .acc { fill:#e34234; }
+    .arr { stroke:#e34234; stroke-width:1.6; fill:none; marker-end:url(#a); }
+    .arr2 { stroke:#6e8b7b; stroke-width:1.6; fill:none; marker-end:url(#b); }
+  </style>
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e34234"/></marker>
+    <marker id="b" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6e8b7b"/></marker>
+  </defs>
+
+  <text x="24" y="36" class="acc" font-size="13" letter-spacing="3">PIXIV ░ DOWNLOAD STUDIO — ARCHITECTURE</text>
+
+  <!-- Browser + extension -->
+  <rect class="box" x="24" y="70" width="200" height="92" rx="3"/>
+  <text x="40" y="98" class="lbl">ブラウザ (複数タブ)</text>
+  <text x="40" y="120" class="sub">Chrome拡張</text>
+  <text x="40" y="138" class="sub">対応URLを一括収集</text>
+  <text x="40" y="154" class="sub">→ キューへ投入</text>
+
+  <!-- Dashboard frontend -->
+  <rect class="box" x="330" y="70" width="200" height="92" rx="3"/>
+  <text x="346" y="98" class="lbl">ダッシュボード</text>
+  <text x="346" y="120" class="sub">Vanilla JS + Vite</text>
+  <text x="346" y="138" class="sub">認証 / 検索 / 設定</text>
+  <text x="346" y="154" class="sub">フィルムストリップ監視</text>
+
+  <!-- Backend -->
+  <rect class="box" x="330" y="210" width="200" height="120" rx="3"/>
+  <text x="346" y="238" class="lbl">バックエンド (FastAPI)</text>
+  <text x="346" y="260" class="sub">pixivpy ラッパー</text>
+  <text x="346" y="278" class="sub">ダウンロードキュー/ワーカー</text>
+  <text x="346" y="296" class="sub">画像プロキシ(SSE)</text>
+  <text x="346" y="314" class="sub">refresh_token (PKCE)</text>
+
+  <!-- Encrypted volume -->
+  <rect class="box" x="610" y="70" width="220" height="92" rx="3"/>
+  <text x="626" y="98" class="lbl">暗号化ボリューム</text>
+  <text x="626" y="120" class="sub">設定 (Fernet暗号化)</text>
+  <text x="626" y="138" class="sub">キューのスナップショット</text>
+  <text x="626" y="154" class="acc" font-size="11">※作品データは保存しない</text>
+
+  <!-- pixiv -->
+  <rect class="box" x="24" y="252" width="200" height="64" rx="3"/>
+  <text x="40" y="280" class="lbl">pixiv API / i.pximg.net</text>
+  <text x="40" y="300" class="sub">作品メタ・原寸画像</text>
+
+  <!-- SMB -->
+  <rect class="box" x="610" y="252" width="220" height="78" rx="3"/>
+  <text x="626" y="280" class="lbl">SMB 共有</text>
+  <text x="626" y="300" class="sub">全作品の保存先</text>
+  <text x="626" y="318" class="sub">メモリ経由で直接ストリーム</text>
+
+  <!-- arrows -->
+  <path class="arr" d="M224 116 L330 116"/>
+  <path class="arr" d="M430 162 L430 210"/>
+  <path class="arr" d="M330 270 L224 280"/>
+  <path class="arr" d="M530 250 L610 130"/>
+  <path class="arr2" d="M530 300 L610 295"/>
+  <text x="240" y="110" class="sub">一括キュー</text>
+  <text x="232" y="262" class="sub">取得</text>
+  <text x="540" y="300" class="sub" fill="#6e8b7b">書込</text>
+</svg>

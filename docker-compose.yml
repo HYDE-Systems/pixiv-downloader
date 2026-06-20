@@ -1,0 +1,29 @@
+services:
+  backend:
+    # 公開イメージを利用: docker compose pull && docker compose up -d
+    # ソースからビルド:   docker compose up -d --build
+    image: ghcr.io/hyde-systems/pixiv-downloader-backend:latest
+    build: ./backend
+    restart: ${RESTART_POLICY:-unless-stopped}
+    environment:
+      # 任意：設定暗号鍵をパスフレーズから導出する場合に指定（未指定なら鍵をボリューム内に自動生成）
+      MASTER_PASSWORD: ${MASTER_PASSWORD:-}
+      DATA_DIR: /data
+    volumes:
+      # 設定とキューのみを暗号化して保持する永続ボリューム。作品データは保存されない。
+      - pixiv_data:/data
+    expose:
+      - "8000"
+
+  frontend:
+    image: ghcr.io/hyde-systems/pixiv-downloader-frontend:latest
+    build: ./frontend
+    restart: ${RESTART_POLICY:-unless-stopped}
+    depends_on:
+      - backend
+    ports:
+      - "${DASHBOARD_PORT:-8080}:80"
+
+volumes:
+  pixiv_data:
+    driver: local

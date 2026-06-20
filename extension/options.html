@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    :root { --ink:#14110F; --panel:#1e1a17; --line:#38302a; --paper:#ede6d8; --dim:#9a9183; --vermilion:#e34234; --jade:#6e8b7b; }
+    body { background: var(--ink); color: var(--paper); font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+      max-width: 520px; margin: 40px auto; padding: 0 20px; font-size: 14px; }
+    h1 { font-size: 22px; letter-spacing:-0.02em; display:flex; align-items:center; gap:10px; }
+    .stamp { width:28px;height:28px;border-radius:6px;background:var(--vermilion);color:var(--ink);
+      display:inline-grid;place-items:center;font-weight:700;transform:rotate(-6deg);font-family:"Space Mono",monospace; }
+    p.hint { color: var(--dim); font-size:13px; }
+    label { display:block; font-family:"Space Mono",monospace; font-size:11px; letter-spacing:0.12em;
+      text-transform:uppercase; color:var(--dim); margin: 18px 0 6px; }
+    input { width:100%; background:var(--panel); border:1px solid var(--line); color:var(--paper);
+      font-family:"Space Mono",monospace; font-size:14px; padding:11px 13px; border-radius:3px; }
+    input:focus { outline:none; border-color: var(--vermilion); }
+    .row { display:flex; gap:10px; margin-top:22px; }
+    button { font-family:"Space Mono",monospace; font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+      padding:11px 18px; border-radius:3px; border:1px solid var(--vermilion); background:var(--vermilion);
+      color:var(--ink); font-weight:700; cursor:pointer; }
+    button.ghost { background:transparent; color:var(--paper); border-color:var(--line); font-weight:400; }
+    .msg { margin-top:16px; min-height:18px; }
+    .msg.ok { color: var(--jade); } .msg.err { color: var(--vermilion); }
+  </style>
+</head>
+<body>
+  <h1><span class="stamp">朱</span> 連携設定</h1>
+  <p class="hint">ダッシュボードのURLと、設定タブで発行したAPIトークンを入力してください。</p>
+  <label>ダッシュボードURL</label>
+  <input id="url" type="text" placeholder="http://localhost:8080" autocomplete="off">
+  <label>APIトークン</label>
+  <input id="token" type="password" placeholder="ダッシュボードの設定からコピー" autocomplete="off">
+  <div class="row">
+    <button id="save">保存</button>
+    <button class="ghost" id="test">接続テスト</button>
+  </div>
+  <div class="msg" id="msg"></div>
+  <script src="options.js"></script>
+</body>
+</html>
