@@ -1,0 +1,27 @@
+name: Release Chrome Extension
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  release-extension:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build extension ZIP
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          ZIP_NAME="pixiv-download-studio-${VERSION}.zip"
+          cd extension
+          zip -r "../${ZIP_NAME}" .
+          echo "ZIP_NAME=${ZIP_NAME}" >> "$GITHUB_ENV"
+
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP_NAME }}
