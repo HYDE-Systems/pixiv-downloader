@@ -605,6 +605,8 @@ async function renderSettings(main) {
         <div class="field"><label>同時ダウンロード数 (要再起動)</label><input id="dl_conc" type="number" min="1" max="6" value="${dl.concurrency}"></div>
       </div>
       <label class="check"><input type="checkbox" id="dl_zip" ${dl.zip_per_work ? "checked" : ""}> 作品ごとにZIP化（全ページ＋メタを1ファイルに）</label>
+      <div class="field" style="margin-left:1.5rem;margin-top:0.4rem"><label>ZIPファイル名テンプレート</label><input id="dl_zip_tpl" type="text" placeholder="例: {artist} ({artist_id})/{illust_id}_{title}" value="${esc(dl.zip_filename_template || "")}"></div>
+      <p class="hint" style="margin-left:1.5rem">使用可能：<code>{artist} {artist_id} {title} {illust_id} {date}</code>　※ 拡張子 <code>.zip</code> は自動付与。空欄時はファイル名テンプレートのフォルダ構成を使用</p>
       <label class="check"><input type="checkbox" id="dl_meta" ${dl.save_metadata ? "checked" : ""}> メタデータ(JSON)を保存</label>
       <label class="check"><input type="checkbox" id="dl_ugo" ${dl.download_ugoira ? "checked" : ""}> うごイラ(zip)をダウンロード</label>
       <label class="check"><input type="checkbox" id="dl_skip" ${dl.skip_existing ? "checked" : ""}> 既存ファイルをスキップ</label>
@@ -645,7 +647,7 @@ async function renderSettings(main) {
       await api.updateSettings({ download: {
         filename_template: v("dl_tpl"), concurrency: Number(v("dl_conc")) || 2,
         save_metadata: c("dl_meta"), download_ugoira: c("dl_ugo"), skip_existing: c("dl_skip"),
-        zip_per_work: c("dl_zip"),
+        zip_per_work: c("dl_zip"), zip_filename_template: v("dl_zip_tpl"),
       }});
       toast("ダウンロード設定を保存しました", "ok");
     } catch (e) { toast(e.message, "err"); }

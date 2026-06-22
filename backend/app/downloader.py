@@ -277,6 +277,11 @@ class DownloadQueue:
 
     def _zip_path(self, opts, ctx) -> str:
         """テンプレートのフォルダ構成を尊重しつつ、作品単位のzipパスを組み立てる。"""
+        tpl = opts.get("zip_filename_template", "").strip()
+        if tpl:
+            path = _build_path(tpl, page=0, ext="zip", **ctx)
+            return path if path.endswith(".zip") else path + ".zip"
+        # デフォルト: filename_templateのディレクトリ構成を維持
         sample = _build_path(opts["filename_template"], page=0, ext="zip", **ctx)
         dirpart = sample.rsplit("/", 1)[0] if "/" in sample else ""
         name = f"{ctx['illust_id']}_{_sanitize(ctx['title'])}.zip"

@@ -61,6 +61,7 @@ DEFAULT_SETTINGS = {
         "concurrency": DEFAULT_CONCURRENCY,
         "skip_existing": True,
         "zip_per_work": False,  # 作品ごとに全ページ+メタを1つのzipにまとめる
+        "zip_filename_template": "",  # 空の場合はfilename_templateのディレクトリ+デフォルト名を使用
     },
     # 拡張機能からの投入を認証するトークン（ダッシュボードで生成）
     "api_token": "",

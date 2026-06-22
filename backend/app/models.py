@@ -21,6 +21,7 @@ class DownloadSettings(BaseModel):
     concurrency: int = 2
     skip_existing: bool = True
     zip_per_work: bool = False
+    zip_filename_template: str = ""
 
 
 class SettingsPatch(BaseModel):
