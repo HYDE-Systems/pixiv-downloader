@@ -129,6 +129,71 @@ docker logs backend | grep トークン            # docker run の場合
 {artist} ({artist_id})/{illust_id}_{title}_p{page}.{ext}
 ```
 
+## アップデート
+
+設定・キューは `pixiv_data` ボリュームに暗号化保存されているため、イメージを更新しても引き継がれます。
+
+### Docker Compose の場合
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+ソースからビルドしている場合:
+
+```bash
+git pull
+docker compose up -d --build
+```
+
+### docker run の場合
+
+```bash
+# 1) 最新イメージを取得
+docker pull ghcr.io/hyde-systems/pixiv-downloader-backend:latest
+docker pull ghcr.io/hyde-systems/pixiv-downloader-frontend:latest
+
+# 2) 既存コンテナを停止・削除
+docker stop backend frontend
+docker rm backend frontend
+
+# 3) 新しいイメージで起動
+docker network create pixiv-net 2>/dev/null || true
+
+docker run -d --name backend \
+  --network pixiv-net \
+  --restart unless-stopped \
+  -v pixiv_data:/data \
+  ghcr.io/hyde-systems/pixiv-downloader-backend:latest
+
+docker run -d --name frontend \
+  --network pixiv-net \
+  --restart unless-stopped \
+  -p 8080:80 \
+  ghcr.io/hyde-systems/pixiv-downloader-frontend:latest
+```
+
+### バージョンを固定する場合
+
+`:latest` の代わりに特定バージョンのタグを指定します。
+
+**Docker Compose** (`docker-compose.yml` を編集):
+
+```yaml
+image: ghcr.io/hyde-systems/pixiv-downloader-backend:v1.1.0
+image: ghcr.io/hyde-systems/pixiv-downloader-frontend:v1.1.0
+```
+
+**docker run** (`latest` 部分をバージョンに置き換え):
+
+```bash
+ghcr.io/hyde-systems/pixiv-downloader-backend:v1.1.0
+ghcr.io/hyde-systems/pixiv-downloader-frontend:v1.1.0
+```
+
+利用可能なバージョン一覧: [GitHub Releases](https://github.com/HYDE-Systems/pixiv-downloader/releases)
+
 ## Chrome 拡張機能
 
 `extension/` ディレクトリを Chrome の「パッケージ化されていない拡張機能を読み込む」で読み込みます。

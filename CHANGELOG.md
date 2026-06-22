@@ -6,6 +6,9 @@
 
 ## [未リリース]
 
+### Changed
+- README にアップデート手順セクションを追加（Docker Compose・docker run・バージョン固定の各方法を記載）
+
 ## [1.1.0] - 2026-06-22
 
 ### Added
